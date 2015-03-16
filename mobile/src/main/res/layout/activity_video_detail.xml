@@ -32,6 +32,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/content_image"
+            android:background="?attr/colorPrimary"
+            android:transitionName="@string/shared_element_1"
             android:orientation="vertical">
 
             <android.support.v7.widget.Toolbar
@@ -70,6 +72,7 @@
             android:layout_height="@dimen/appbar"
             android:layout_below="@id/content_header"
             tools:context=".MovieDetailActivity"
+            android:transitionName="@string/shared_element_2"
             app:shadowDrawable="@drawable/bottom_shadow"
             app:shadowVisible="true"/>
 
