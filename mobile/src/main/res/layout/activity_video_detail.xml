@@ -32,7 +32,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/content_image"
-            android:background="?attr/colorPrimary"
+            android:background="@color/colorPirmary"
             android:orientation="vertical">
 
             <android.support.v7.widget.Toolbar
