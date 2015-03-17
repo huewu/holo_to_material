@@ -10,6 +10,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -48,6 +49,7 @@ public class VideoBrowseActivity extends ActionBarActivity
     private ActionBarDrawerToggle mDrawerToggle;
     private RecyclerView.OnScrollListener mScrollListener;
     private View mUpperSurface;
+    private Toolbar mToolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +65,8 @@ public class VideoBrowseActivity extends ActionBarActivity
     private void initToolbar() {
 
         Log.d(TAG, "initToolbar");
+        mToolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        setSupportActionBar((Toolbar) mToolbar);
     }
 
     private void initFragmentPager() {
