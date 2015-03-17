@@ -88,7 +88,6 @@ public class VideoBrowseFragment extends Fragment {
         }
 
         mCallbacks = (Callbacks) activity;
-        setOnScrollListener(mCallbacks.getScrollListener());
     }
 
     @Override
@@ -143,7 +142,7 @@ public class VideoBrowseFragment extends Fragment {
 
         // Set CustomAdapter as the adapter for RecyclerView.
         mRecyclerView.setAdapter(adapter);
-        mRecyclerView.setOnScrollListener(mScrollListener);
+        mRecyclerView.setOnScrollListener(mCallbacks.getScrollListener());
         return root;
     }
 

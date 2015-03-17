@@ -179,15 +179,18 @@ public class VideoBrowseActivity extends ActionBarActivity
 
         final int minUpperSurfaceY;
         mUpperSurface = findViewById(R.id.upper_surface);
+        final View shadowView = findViewById(R.id.tab_shadow);
+        final int appbarHeight;
 
         TypedValue tv = new TypedValue();
         if (getTheme().resolveAttribute(R.attr.actionBarSize, tv, true)) {
-            minUpperSurfaceY
-                    = - TypedValue.complexToDimensionPixelSize(tv.data, getResources().getDisplayMetrics());
+            appbarHeight
+                    = TypedValue.complexToDimensionPixelSize(tv.data, getResources().getDisplayMetrics());
         } else {
-            minUpperSurfaceY = 0;
+            appbarHeight = 0;
         }
 
+        minUpperSurfaceY = -appbarHeight;
         mScrollListener = new RecyclerView.OnScrollListener() {
 
             @Override
@@ -206,12 +209,16 @@ public class VideoBrowseActivity extends ActionBarActivity
 
                 if (futureAppbarPosY <= minUpperSurfaceY) {
                     mUpperSurface.setY(minUpperSurfaceY);
+                    shadowView.setY(appbarHeight);
                 } else if (futureAppbarPosY >= 0) {
                     mUpperSurface.setY(0);
+                    shadowView.setY(appbarHeight * 2);
                 } else {
                     mUpperSurface.setY(futureAppbarPosY);
+                    shadowView.setY(futureAppbarPosY + appbarHeight * 2);
                 }
             }
+
         };
     }
     private void showAllVideos() {

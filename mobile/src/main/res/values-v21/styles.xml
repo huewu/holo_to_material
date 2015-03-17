@@ -2,11 +2,13 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="MyTheme" parent="@style/Theme.AppCompat.Light.NoActionBar">
+    <style name="MyTheme" parent="@style/Theme.AppCompat.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPirmary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:textColorPrimary">#770000</item>
+
     </style>
 
     <style name="MyTheme.WithNavi" parent="@style/MyTheme">
