@@ -2,4 +2,5 @@
 <resources>
     <item name="download_job" type="id" />
     <item name="my_toolbar" type="id" />
+    <item name="sliding_tabs" type="id" />
 </resources>

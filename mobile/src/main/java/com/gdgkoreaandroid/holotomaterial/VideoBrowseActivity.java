@@ -5,11 +5,10 @@ import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
-import android.support.v4.app.ActionBarDrawerToggle;
-//import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -20,6 +19,8 @@ import android.widget.Toast;
 import com.example.android.common.view.SlidingTabLayout;
 import com.gdgkoreaandroid.holotomaterial.data.Video;
 import com.gdgkoreaandroid.holotomaterial.data.Videos;
+
+//import android.support.v7.app.ActionBarDrawerToggle;
 
 //import android.support.v7.app.ActionBarDrawerToggle;
 
@@ -77,9 +78,11 @@ public class VideoBrowseActivity extends ActionBarActivity
         pager.setAdapter(adpater);
 
         final SlidingTabLayout tabs = (SlidingTabLayout) findViewById(R.id.sliding_tabs);
-        tabs.setDividerColors(getResources().getColor(R.color.colorPirmary));
-        tabs.setSelectedIndicatorColors(getResources().getColor(R.color.white_alpha_87));
-        tabs.setViewPager(pager);
+        if (tabs != null) {
+            //style tabs
+            tabs.setDividerColors(getResources().getColor(R.color.colorPirmary));
+            tabs.setSelectedIndicatorColors(getResources().getColor(R.color.white_alpha_87));
+        }
     }
 
     private void initNaviDrawer() {
