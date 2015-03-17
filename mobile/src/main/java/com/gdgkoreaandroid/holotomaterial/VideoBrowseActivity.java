@@ -13,6 +13,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
@@ -80,11 +81,27 @@ public class VideoBrowseActivity extends ActionBarActivity
         pager.setAdapter(adpater);
 
         final SlidingTabLayout tabs = (SlidingTabLayout) findViewById(R.id.sliding_tabs);
-        if (tabs != null) {
-            //style tabs
-            tabs.setDividerColors(getResources().getColor(R.color.colorPirmary));
-            tabs.setSelectedIndicatorColors(getResources().getColor(R.color.white_alpha_87));
-        }
+        tabs.setDividerColors(getResources().getColor(R.color.colorPirmary));
+        tabs.setSelectedIndicatorColors(getResources().getColor(R.color.white_alpha_87));
+        tabs.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+
+            public static final String TAG = "OnPageChangeListener";
+
+            @Override
+            public void onPageScrolled(int index, float v, int i2) {
+                // IGNORED
+            }
+
+            @Override
+            public void onPageSelected(int index) {
+                mUpperSurface .animate().y(0).start();
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int index) {
+                // IGNORED
+            }
+        });
 
         tabs.setViewPager(pager);
     }
@@ -159,8 +176,44 @@ public class VideoBrowseActivity extends ActionBarActivity
     }
 
     private void initParallaxEffect() {
-    }
 
+        final int minUpperSurfaceY;
+        mUpperSurface = findViewById(R.id.upper_surface);
+
+        TypedValue tv = new TypedValue();
+        if (getTheme().resolveAttribute(R.attr.actionBarSize, tv, true)) {
+            minUpperSurfaceY
+                    = - TypedValue.complexToDimensionPixelSize(tv.data, getResources().getDisplayMetrics());
+        } else {
+            minUpperSurfaceY = 0;
+        }
+
+        mScrollListener = new RecyclerView.OnScrollListener() {
+
+            @Override
+            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+                // IGNORED
+            }
+
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+
+                final int offset = (int) (dy * .66f);
+                //final float futureTabPosY = mTabs.getY() - offset;
+                final float futureAppbarPosY = mUpperSurface.getY() - offset;
+
+                if (futureAppbarPosY <= minUpperSurfaceY) {
+                    mUpperSurface.setY(minUpperSurfaceY);
+                } else if (futureAppbarPosY >= 0) {
+                    mUpperSurface.setY(0);
+                } else {
+                    mUpperSurface.setY(futureAppbarPosY);
+                }
+            }
+        };
+    }
     private void showAllVideos() {
         mDrawerLayout.closeDrawers();
     }
