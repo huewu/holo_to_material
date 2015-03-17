@@ -76,8 +76,8 @@ public class VideoDetailActivity extends ActionBarActivity {
 
     private void initToolbar() {
         // Show the Up button in the action bar.
-        final Toolbar toolbar = (Toolbar) findViewById(R.id.my_toolbar);
-        setSupportActionBar(toolbar);
+//        final Toolbar toolbar = (Toolbar) findViewById(R.id.my_toolbar);
+//        setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("");
     }
