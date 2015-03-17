@@ -1,6 +1,7 @@
 package com.gdgkoreaandroid.holotomaterial;
 
 import android.annotation.TargetApi;
+import android.app.ActivityOptions;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Build;
@@ -13,6 +14,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.util.Pair;
 import android.util.TypedValue;
 import android.view.MenuItem;
 import android.view.View;
@@ -288,7 +290,10 @@ public class VideoBrowseActivity extends ActionBarActivity
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     private void startActivityWithTransition(Intent detailIntent, View view) {
-        startActivity(detailIntent);
+        View titleView = view.findViewById(R.id.grid_video_title);
+        ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(this,
+                new Pair<>(titleView, getString(R.string.shared_element_1)));
+        startActivity(detailIntent, options.toBundle());
     }
 
     @Override

@@ -7,7 +7,7 @@
         <item name="colorPrimary">@color/colorPirmary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
-        <item name="android:textColorPrimary">#770000</item>
+        <item name="android:windowSharedElementsUseOverlay">false</item>
 
     </style>
 

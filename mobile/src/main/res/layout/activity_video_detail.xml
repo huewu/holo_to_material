@@ -33,6 +33,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/content_image"
             android:background="@color/colorPirmary"
+            android:transitionName="@string/shared_element_1"
             android:orientation="vertical">
 
             <android.support.v7.widget.Toolbar
