@@ -84,6 +84,8 @@ public class VideoBrowseActivity extends ActionBarActivity
             tabs.setDividerColors(getResources().getColor(R.color.colorPirmary));
             tabs.setSelectedIndicatorColors(getResources().getColor(R.color.white_alpha_87));
         }
+
+        tabs.setViewPager(pager);
     }
 
     private void initNaviDrawer() {
