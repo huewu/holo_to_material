@@ -23,7 +23,6 @@
         <LinearLayout
             android:id="@+id/upper_surface"
             android:orientation="vertical"
-            android:elevation="8dp"
             android:background="?attr/colorPrimary"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -40,13 +39,6 @@
                 android:background="@null"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"/>
-
-            <View
-                android:id="@+id/tab_shadow"
-                android:visibility="@integer/shadowview_visibility"
-                android:layout_width="match_parent"
-                android:layout_height="?android:attr/actionBarSize"
-                android:background="@drawable/bottom_shadow"/>
 
         </LinearLayout>
 
