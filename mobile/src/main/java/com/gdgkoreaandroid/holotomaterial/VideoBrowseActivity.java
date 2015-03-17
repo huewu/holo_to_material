@@ -283,6 +283,7 @@ public class VideoBrowseActivity extends ActionBarActivity
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     private void startActivityWithTransition(Intent detailIntent, View view) {
+        startActivity(detailIntent);
     }
 
     @Override

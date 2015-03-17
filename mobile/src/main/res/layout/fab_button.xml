@@ -4,7 +4,7 @@
     android:id="@+id/content_play"
     android:layout_width="@dimen/fab_size"
     android:layout_height="@dimen/fab_size"
-    android:background="@drawable/fab_background"
+    android:background="@android:drawable/btn_default"
     android:clickable="true"
     android:focusable="true">
 
