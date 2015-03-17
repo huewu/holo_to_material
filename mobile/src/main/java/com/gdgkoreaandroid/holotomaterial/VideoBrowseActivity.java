@@ -8,7 +8,8 @@ import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
-import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v4.app.ActionBarDrawerToggle;
+//import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -88,11 +89,10 @@ public class VideoBrowseActivity extends ActionBarActivity
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         final View drawerList = findViewById(R.id.left_drawer);
 
-        View toolbar = (Toolbar) findViewById(R.id.my_toolbar);
         mDrawerToggle = new ActionBarDrawerToggle(
                 this,
                 mDrawerLayout,
-                (Toolbar) toolbar,
+                R.drawable.ic_drawer,
                 R.string.drawer_open,
                 R.string.drawer_close
         ) {
