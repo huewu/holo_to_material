@@ -283,12 +283,7 @@ public class VideoBrowseActivity extends ActionBarActivity
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     private void startActivityWithTransition(Intent detailIntent, View view) {
-        View titleView = view.findViewById(R.id.grid_video_title);
-        View shadowView = view.findViewById(R.id.grid_video_shadow);
-        ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(this,
-                new Pair<View, String>(titleView, getString(R.string.shared_element_1)),
-                new Pair<View, String>(shadowView, getString(R.string.shared_element_2)));
-        startActivity(detailIntent, options.toBundle());    }
+    }
 
     @Override
     public RecyclerView.OnScrollListener getScrollListener() {
