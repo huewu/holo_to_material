@@ -47,29 +47,15 @@ public class VideoBrowseActivity extends ActionBarActivity
 
     private static final String TAG = "VideoBrowseActivity";
 
-    private View mToolbar;
-    private View mTabs;
-
-    private int mMaxTabContainerY;
-    private int mMinTabContainerY;
-    private int mMaxAppBarY;
-    private int mMinAppBarY;
-    private int mActionbarHeight;
-
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mDrawerToggle;
     private RecyclerView.OnScrollListener mScrollListener;
+    private View mUpperSurface;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_video_browse);
-
-        TypedValue tv = new TypedValue();
-        if (getTheme().resolveAttribute(R.attr.actionBarSize, tv, true)) {
-            mActionbarHeight
-                    = TypedValue.complexToDimensionPixelSize(tv.data, getResources().getDisplayMetrics());
-        }
 
         initToolbar();
         initFragmentPager();
@@ -80,8 +66,8 @@ public class VideoBrowseActivity extends ActionBarActivity
     private void initToolbar() {
 
         Log.d(TAG, "initToolbar");
-        mToolbar = (Toolbar) findViewById(R.id.my_toolbar);
-        setSupportActionBar((Toolbar) mToolbar);
+        View toolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        setSupportActionBar((Toolbar) toolbar);
     }
 
     private void initFragmentPager() {
@@ -107,8 +93,7 @@ public class VideoBrowseActivity extends ActionBarActivity
 
             @Override
             public void onPageSelected(int index) {
-                mToolbar.animate().y(mMaxAppBarY).start();
-                mTabs.animate().y(mMaxTabContainerY).start();
+                mUpperSurface .animate().y(0).start();
             }
 
             @Override
@@ -117,7 +102,6 @@ public class VideoBrowseActivity extends ActionBarActivity
             }
         });
 
-        mTabs = findViewById(R.id.sliding_tabs);
         tabs.setViewPager(pager);
     }
 
@@ -128,10 +112,11 @@ public class VideoBrowseActivity extends ActionBarActivity
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         final View drawerList = findViewById(R.id.left_drawer);
 
+        View toolbar = (Toolbar) findViewById(R.id.my_toolbar);
         mDrawerToggle = new ActionBarDrawerToggle(
                 this,
                 mDrawerLayout,
-                (Toolbar) mToolbar,
+                (Toolbar) toolbar,
                 R.string.drawer_open,
                 R.string.drawer_close
         ) {
@@ -192,11 +177,17 @@ public class VideoBrowseActivity extends ActionBarActivity
 
     private void initParallaxEffect() {
 
-        mMaxTabContainerY = mActionbarHeight;
-        mMinTabContainerY = 0;
+        final int minUpperSurfaceY;
+        mUpperSurface = findViewById(R.id.upper_surface);
 
-        mMinAppBarY = -mActionbarHeight;
-        mMaxAppBarY = 0;
+
+        TypedValue tv = new TypedValue();
+        if (getTheme().resolveAttribute(R.attr.actionBarSize, tv, true)) {
+            minUpperSurfaceY
+                    = - TypedValue.complexToDimensionPixelSize(tv.data, getResources().getDisplayMetrics());
+        } else {
+            minUpperSurfaceY = 0;
+        }
 
         mScrollListener = new RecyclerView.OnScrollListener() {
 
@@ -211,23 +202,15 @@ public class VideoBrowseActivity extends ActionBarActivity
                 super.onScrolled(recyclerView, dx, dy);
 
                 final int offset = (int) (dy * .66f);
-                final float futureTabPosY = mTabs.getY() - offset;
-                final float futureAppbarPosY = mToolbar.getY() - offset;
+                //final float futureTabPosY = mTabs.getY() - offset;
+                final float futureAppbarPosY = mUpperSurface.getY() - offset;
 
-                if (futureTabPosY <= mMinTabContainerY) {
-                    mTabs.setY(mMinTabContainerY);
-                } else if (futureTabPosY >= mMaxTabContainerY) {
-                    mTabs.setY(mMaxTabContainerY);
+                if (futureAppbarPosY <= minUpperSurfaceY) {
+                    mUpperSurface.setY(minUpperSurfaceY);
+                } else if (futureAppbarPosY >= 0) {
+                    mUpperSurface.setY(0);
                 } else {
-                    mTabs.setY(futureTabPosY);
-                }
-
-                if (futureAppbarPosY <= mMinAppBarY) {
-                    mToolbar.setY(mMinAppBarY);
-                } else if (futureAppbarPosY >= mMaxAppBarY) {
-                    mToolbar.setY(mMaxAppBarY);
-                } else {
-                    mToolbar.setY(futureAppbarPosY);
+                    mUpperSurface.setY(futureAppbarPosY);
                 }
             }
         };

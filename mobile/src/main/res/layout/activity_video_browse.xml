@@ -13,36 +13,42 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <android.support.v7.widget.Toolbar
-            android:id="@id/my_toolbar"
-            app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-            android:elevation="8dp"
-            android:layout_height="?attr/actionBarSize"
-            android:layout_width="match_parent"
-            android:background="?attr/colorPrimary"/>
-
         <android.support.v4.view.ViewPager
             android:id="@+id/content_pager"
-            android:layout_below="@id/my_toolbar"
+            android:layout_marginTop="?attr/actionBarSize"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
         </android.support.v4.view.ViewPager>
 
-        <com.example.android.common.view.SlidingTabLayout
-            android:id="@+id/sliding_tabs"
+        <LinearLayout
+            android:id="@+id/upper_surface"
+            android:orientation="vertical"
             android:elevation="8dp"
-            android:layout_below="@id/my_toolbar"
-            android:background="@color/colorPirmary"
+            android:background="?attr/colorPrimary"
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"/>
+            android:layout_height="wrap_content">
 
-        <View
-            android:id="@+id/tab_shadow"
-            android:visibility="@integer/shadowview_visibility"
-            android:layout_below="@id/sliding_tabs"
-            android:layout_width="match_parent"
-            android:layout_height="?android:attr/actionBarSize"
-            android:background="@drawable/bottom_shadow"/>
+            <android.support.v7.widget.Toolbar
+                android:id="@id/my_toolbar"
+                app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+                android:layout_height="?attr/actionBarSize"
+                android:layout_width="match_parent"
+                android:background="@null"/>
+
+            <com.example.android.common.view.SlidingTabLayout
+                android:id="@+id/sliding_tabs"
+                android:background="@null"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"/>
+
+            <View
+                android:id="@+id/tab_shadow"
+                android:visibility="@integer/shadowview_visibility"
+                android:layout_width="match_parent"
+                android:layout_height="?android:attr/actionBarSize"
+                android:background="@drawable/bottom_shadow"/>
+
+        </LinearLayout>
 
     </RelativeLayout>
 
